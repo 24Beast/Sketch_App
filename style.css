@@ -48,3 +48,10 @@ canvas {
   width: 70px;
   margin: 2px;
 }
+
+.size_button{
+  background-color: #8B0000;
+  height: 30px;
+  width: 30px;
+  margin: 2px;
+}

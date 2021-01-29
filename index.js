@@ -45,6 +45,7 @@ function runner(){
       this.canvas_coords = this.canvas.getBoundingClientRect();
       this.ctx = ctx;
       this.ctx.strokeColor = this.options.stroke_color;
+      this.ctx.lineWidth = 4;
       this.drawing = false;
       this.addCanvasEvents();
     },
@@ -116,6 +117,30 @@ function runner(){
     ctx.clearRect(0, 0, 1500, 700);
   })
   
+  document.getElementById("size_1").addEventListener('click',function(){
+    ctx.lineWidth = 2;
+  });
+  
+  document.getElementById("size_2").addEventListener('click',function(){
+    ctx.lineWidth = 3;
+  });
+  
+  document.getElementById("size_3").addEventListener('click',function(){
+    ctx.lineWidth = 4;
+  });
+
+  document.getElementById("size_4").addEventListener('click',function(){
+    ctx.lineWidth = 5;
+  });
+
+  document.getElementById("size_5").addEventListener('click',function(){
+    ctx.lineWidth = 6;
+  });
+
+  document.getElementById("size_6").addEventListener('click',function(){
+    ctx.lineWidth = 7;
+  });
+
 }
 
 runner()
