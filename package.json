@@ -1,0 +1,21 @@
+{
+  "name": "sketch_app",
+  "version": "1.0.0",
+  "description": "A basic sketching app",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "pending"
+  },
+  "keywords": [
+    "sketch",
+    "html5",
+    "js",
+    "canvas"
+  ],
+  "author": "Bhanu Tokas (24Beast)",
+  "license": "ISC"
+}

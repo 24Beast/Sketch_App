@@ -1,0 +1,50 @@
+body{
+  background: #111;
+  color: #f8f8f8;
+}
+
+canvas {
+  background: #f8f8f8;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 0;
+  display: block;
+}
+
+#button_div {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 75px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #000080;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  margin-left: 2px;
+}
+
+#canvas_div{
+  padding: 0;
+  margin: 0 auto;
+}
+
+.color_button{
+  margin: 2px;
+  height: 30px;
+  width: 30px;
+}
+
+.shape_button{
+  background-color: #ffffff;
+  height: 30px;
+  width: 70px;
+  margin: 2px;
+}
+
+.process_button{
+  background-color: #00ffff;
+  height: 30px;
+  width: 70px;
+  margin: 2px;
+}
