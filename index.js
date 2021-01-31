@@ -1,5 +1,18 @@
+var setBackImage = function(event){
+  var img = new Image();
+  img.src = URL.createObjectURL(event.target.files[0]);
+  var canvas = document.getElementById("canvas_board");
+  var ctx = canvas.getContext('2d');
+  img.onload= function(){
+    var hRatio = canvas.width/img.width;
+    var vRatio = canvas.height/img.height;
+    var ratio  = Math.min(hRatio, vRatio);
+    ctx.drawImage(img, 0,0, img.width, img.height, 0,0,img.width*hRatio, img.height*vRatio);
+  }
+};
+
 function runner(){
-  var tool;
+  var shape = 1;
   var canvas = document.getElementById("canvas_board");
   var ctx = canvas.getContext('2d');
   
@@ -27,7 +40,6 @@ function runner(){
         let img = document.createElement('img');
         img.src = restore_state;
         img.onload = function() {
-          console.log("Activated");
           ctx.clearRect(0, 0, 1500, 700);
           ctx.drawImage(img, 0, 0, 1500, 700, 0, 0, 1500, 700);  
         }
@@ -78,6 +90,7 @@ function runner(){
   };
   
   document.getElementById('Line').addEventListener('click', function() {
+    shape = 1; 
     pencil.init(canvas, ctx);
   });
   
@@ -88,6 +101,18 @@ function runner(){
   document.getElementById('Redo').addEventListener('click', function() {
     history.redo(canvas, ctx);
   });
+  
+  document.getElementById("Clear").addEventListener("click",function(){
+    ctx.clearRect(0, 0, 1500, 700);
+  })
+
+  document.getElementById("Rectangle").addEventListener("click",function(){
+    shape = 2;
+  })
+
+  document.getElementById("Ellipse").addEventListener("click",function(){
+    shape = 3;
+  })
 
   document.getElementById("red").addEventListener('click',function(){
     ctx.strokeStyle = "#FF0000";
@@ -112,10 +137,6 @@ function runner(){
   document.getElementById("purple").addEventListener('click',function(){
     ctx.strokeStyle = "#4169E1";  
   });
-
-  document.getElementById("Clear").addEventListener("click",function(){
-    ctx.clearRect(0, 0, 1500, 700);
-  })
   
   document.getElementById("size_1").addEventListener('click',function(){
     ctx.lineWidth = 2;

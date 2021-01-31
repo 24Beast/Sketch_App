@@ -29,6 +29,9 @@
       <button class="process_button" id="Undo">Undo</button>
       <button class="process_button" id="Redo">Redo</button>
       <button class="process_button" id="Clear">Clear</button>
+      <b style="text-align: inherit">Image</b>
+      <input type="file"  accept="image/jpeg, image/png" name="image" id="img_file" onchange="setBackImage(event)" style="display: none;">
+      <button id="img_button"><label for="img_file" style="cursor: pointer;">Upload Image</label></button>
     </div>
     <div id="canvas_div">
       <canvas id="canvas_board" width="1500" height="700">
