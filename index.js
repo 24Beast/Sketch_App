@@ -12,7 +12,9 @@ var setBackImage = function(event){
 };
 
 function runner(){
+  var shape_init = false;
   var shape = 1;
+  var p1 = null;
   var canvas = document.getElementById("canvas_board");
   var ctx = canvas.getContext('2d');
   
@@ -60,39 +62,82 @@ function runner(){
       this.ctx.lineWidth = 4;
       this.drawing = false;
       this.addCanvasEvents();
+      shape_init = true;
     },
     addCanvasEvents: function() {
       this.canvas.addEventListener('mousedown', this.start.bind(this));
       this.canvas.addEventListener('mousemove', this.stroke.bind(this));
       this.canvas.addEventListener('mouseup', this.stop.bind(this));
-      this.canvas.addEventListener('mouseout', this.stop.bind(this));
+      this.canvas.addEventListener('mouseout', this.out.bind(this));
     },
     start: function(evt) {
       var x = evt.clientX - this.canvas_coords.left;
       var y = evt.clientY - this.canvas_coords.top;
-      this.ctx.beginPath();
-      this.ctx.moveTo(x, y);
+      if(shape==1){
+        this.ctx.beginPath();
+        this.ctx.moveTo(x, y);
+        this.drawing = true;
+      }else{
+        if(p1!=null){
+          ctx.fillRect(p1[0],p1[1], x - p1[0], y - p1[1]);
+          p1=null;
+          canvas.style.cursor = "default";
+        }else{
+          p1 = [x,y];
+          canvas.style.cursor = "crosshair";
+        }
+      }
       history.saveState(this.canvas);
-      this.drawing = true;
     },
     stroke: function(evt) {
-      if(this.drawing) {
-        var x = evt.clientX - this.canvas_coords.left;
-        var y = evt.clientY - this.canvas_coords.top;
-        this.ctx.lineTo(x, y);
-        this.ctx.stroke();
-        
+      if(shape==1){
+        if(this.drawing) {
+          var x = evt.clientX - this.canvas_coords.left;
+          var y = evt.clientY - this.canvas_coords.top;
+          this.ctx.lineTo(x, y);
+          this.ctx.stroke();
+        }
       }
     },
     stop: function(evt) {
-      if(this.drawing) this.drawing = false;
+      if(shape==1){
+        if(this.drawing){
+          this.drawing = false;
+        }
+      }
+    },
+    out: function(evt) {
+      if(shape==1){
+        if(this.drawing){
+          this.drawing = false;
+        }
+      }else{
+        p1=null;
+        canvas.style.cursor = "default";      
+      }
     }
   };
   
   document.getElementById('Line').addEventListener('click', function() {
     shape = 1; 
+    if(shape_init!=true){
     pencil.init(canvas, ctx);
+    }
   });
+
+  document.getElementById("Rectangle").addEventListener("click",function(){
+    shape = 2;
+    if(shape_init!=true){
+      pencil.init(canvas, ctx);
+    }
+  })
+
+  document.getElementById("Ellipse").addEventListener("click",function(){
+    shape = 3;
+    if(shape_init!=true){
+      pencil.init(canvas, ctx);
+    }
+  })
   
   document.getElementById('Undo').addEventListener('click', function() {
     history.undo(canvas, ctx);
@@ -106,36 +151,34 @@ function runner(){
     ctx.clearRect(0, 0, 1500, 700);
   })
 
-  document.getElementById("Rectangle").addEventListener("click",function(){
-    shape = 2;
-  })
-
-  document.getElementById("Ellipse").addEventListener("click",function(){
-    shape = 3;
-  })
-
   document.getElementById("red").addEventListener('click',function(){
     ctx.strokeStyle = "#FF0000";
+    ctx.fillStyle = "#FF0000";
   });
   
   document.getElementById("blue").addEventListener('click',function(){
     ctx.strokeStyle = "#0000FF";
+    ctx.fillStyle = "#0000FF";
   });
   
   document.getElementById("green").addEventListener('click',function(){
-    ctx.strokeStyle = "#00FF00";  
+    ctx.strokeStyle = "#00FF00";
+    ctx.fillStyle = "#00FF00";  
   });
   
   document.getElementById("black").addEventListener('click',function(){
-    ctx.strokeStyle = "#000000";  
+    ctx.strokeStyle = "#000000";
+    ctx.fillStyle = "#000000";
   });
   
   document.getElementById("white").addEventListener('click',function(){
-    ctx.strokeStyle = "#FFFFFF";  
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.fillStyle = "#FFFFFF";
   });
   
   document.getElementById("purple").addEventListener('click',function(){
-    ctx.strokeStyle = "#4169E1";  
+    ctx.strokeStyle = "#4169E1";
+    ctx.fillStyle = "#4169E1";
   });
   
   document.getElementById("size_1").addEventListener('click',function(){
