@@ -7,44 +7,114 @@
   </head>
   <body>
     <div id="button_div">
-      <b style="text-align: inherit">Colours</b>
-      <button class="color_button" id="red" style="background-color: #ff0000;"></button>
-      <button class="color_button" id="blue" style="background-color: #0000ff;"></button>
-      <button class="color_button" id="green" style="background-color: #00ff00;"></button>
-      <button class="color_button" id="black" style="background-color: #000000;"></button>
-      <button class="color_button" id="white" style="background-color: #ffffff;"></button>
-      <button class="color_button" id="purple" style="background-color: #4169E1;"></button>
-      <b style="text-align: inherit">Pen sizes</b>
-      <button class="size_button" id="size_1">1</button>
-      <button class="size_button" id="size_2">2</button>
-      <button class="size_button" id="size_3">3</button>
-      <button class="size_button" id="size_4">4</button>
-      <button class="size_button" id="size_5">5</button>
-      <button class="size_button" id="size_6">6</button>
-      <b style="text-align: inherit">Shapes</b>
-      <button class="shape_button" id="Rectangle">Rectangle</button>
-      <button class="shape_button" id="Ellipse">Ellipse</button>
-      <button class="shape_button" id="Line">Line</button>
-      <b style="text-align: inherit">Processes</b>
+      <b style="text-align: inherit" id="Colour_Btn">Colours</b>
+      <div id = "Colour_Div">
+        <button class="color_button" id="red" style="background-color: #ff0000;"></button>
+        <button class="color_button" id="blue" style="background-color: #0000ff;"></button>
+        <button class="color_button" id="green" style="background-color: #00ff00;"></button>
+        <button class="color_button" id="black" style="background-color: #000000;"></button>
+        <button class="color_button" id="white" style="background-color: #ffffff;"></button>
+        <button class="color_button" id="purple" style="background-color: #4169E1;"></button>
+      </div>
+
+      <b style="text-align: inherit" id = "Pen_Btn">Pen sizes</b>
+      <div id = "Pen_Div">
+        <button class="size_button" id="size_1">1</button>
+        <button class="size_button" id="size_2">2</button>
+        <button class="size_button" id="size_3">3</button>
+        <button class="size_button" id="size_4">4</button>
+        <button class="size_button" id="size_5">5</button>
+        <button class="size_button" id="size_6">6</button>
+      </div>
+
+      <b style="text-align: inherit" id = "Shape_Btn">Shapes</b>
+      <div id="Shape_Div">
+        <button class="shape_button" id="Line">Line</button>
+        <button class="shape_button" id="Rectangle">Rectangle</button>
+        <!--<button class="shape_button" id="Ellipse">Ellipse</button>-->
+      </div>
+
+      
+      <b style="text-align: inherit" id = "Segment_Btn">Segment</b>
+      <div id="Segment_Div">
+        <button class="segment_button" id="SLIC">SLIC</button>
+        <div class="slidecontainer">
+          <input type="range" min="100" max="500" value="300" class="slider" id="slic_range">
+        </div>
+        Value: <b id="slic_val"></b>
+        <button class="segment_button" id="Felzen">Felzen</button>
+        <div class="slidecontainer">
+          <input type="range" min="100" max="500" value="300" class="slider" id="felzen_range">
+        </div>
+        Value: <b id="felzen_val"></b>
+        <button class="segment_button" id="Lasso">Lasso</button>
+      </div>
+      
+      <b style="text-align: inherit" id = "Inpaint_Btn">Inpaint</b>
+      <div id="Inpaint_Div">
+        <button class="inpaint_button" id ="priors">Priors</button>
+        <div class="slidecontainer">
+          <input type="range" min="1000" max="5000" value="3000" class="slider" id="prior_range">
+        </div>
+        Iter: <b id="prior_val"></b>
+      </div>
+
+      <b style="text-align: inherit" >Processes</b>
       <button class="process_button" id="Undo">Undo</button>
       <button class="process_button" id="Redo">Redo</button>
       <button class="process_button" id="Clear">Clear</button>
+      
       <b style="text-align: inherit">Image</b>
       <input type="file"  accept="image/jpeg, image/png" name="image" id="img_file" onchange="setBackImage(event)" style="display: none;">
       <button id="img_button"><label for="img_file" style="cursor: pointer;">Upload Image</label></button>
+      
     </div>
+    
+    <div id="Mask_Div">
+      <b style="color: #0000ff;text-align:center;">Your Masks</b>
+      <div>
+        <img src="masks/back.png" id="back" class="Mask_Img" width="225" height="105" alt="">
+      </div>
+      <div>
+        <img src="masks/col_0.png" id="col_0" class="Mask_Img" width="225" height="105" alt="">
+      </div>
+      <div>
+        <img src="masks/col_1.png" id="col_1" class="Mask_Img" width="225" height="105" alt="">
+      </div>
+      <div>
+        <img src="masks/col_2.png" id="col_2" class="Mask_Img" width="225" height="105" alt="">
+      </div>
+      <div>
+        <img src="masks/col_3.png" id="col_3" class="Mask_Img" width="225" height="105" alt="">
+      </div>
+      <div>
+        <img src="masks/col_4.png" id="col_4" class="Mask_Img" width="225" height="105" alt="">
+      </div>
+      <div>
+        <img src="masks/col_5.png" id="col_5" class="Mask_Img" width="225" height="105" alt="">
+      </div>
+    </div>
+
     <div id="canvas_div">
-      <canvas id="canvas_board" width="1500" height="700">
+    
+      <canvas id="canvas_board" width="736" height="352">
         <p>Unfortunately, your browser is currently unsupported by our web 
           application.  We are sorry for the inconvenience. Please use one of the 
           supported browsers listed below, or draw the image you want using an 
           offline tool.</p>
-          <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a 
-            href="http://www.mozilla.com">Firefox</a>, <a 
-            href="http://www.apple.com/safari">Safari</a>, and <a 
-            href="http://www.konqueror.org">Konqueror</a>.</p>
-        </canvas>
-      </div>
+          <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, 
+            <a href="http://www.mozilla.com">Firefox</a>, 
+            <a href="http://www.apple.com/safari">Safari</a>, and 
+            <a href="http://www.konqueror.org">Konqueror</a>.</p>
+        </canvas>    
+    
+    </div>    
+    <br>
+    <div style="float: right;">
+        <img width="736" height="352" draggable="false" src = "segment.jpg" id="output_img" alt="Loading Image" style="display: none;">
+    </div>
+
+
   </body>
   <script src="index.js"></script>
 </html>
