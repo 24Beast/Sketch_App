@@ -1,0 +1,168 @@
+body{
+  background: #111;
+  color: #f8f8f8;
+}
+
+canvas {
+  background: #f8f8f8;
+  padding: 0;
+  margin: 10px ;
+  display: block;
+  float: right;
+  position: relative;
+}
+
+#output_img {
+  background: #f8f8f8;
+  padding: 0;
+  margin: 10px;
+  display: block;
+}
+
+#button_div {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 75px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #000080;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 10px;
+  margin-left: 2px;
+  float:left;
+}
+
+#Mask_Div {
+  background: yellow;
+  padding: 0;
+  width: 240px;
+  min-width: 240px;
+  min-height: 525px;
+  height: 100%;
+  margin: 20 auto;
+  margin-bottom: 0;
+  margin-left: 0;
+  display: block;
+  right : 0px;
+  float: right;
+}
+
+
+#canvas_div{
+  padding: 0;
+  margin: 0 auto;
+}
+
+.color_button{
+  margin: 2px;
+  height: 30px;
+  width: 30px;
+}
+
+.shape_button{
+  background-color: #ffffff;
+  height: 30px;
+  width: 70px;
+  margin: 2px;
+}
+
+.process_button{
+  background-color: #00ffff;
+  height: 30px;
+  width: 70px;
+  margin: 2px;
+}
+
+.inpaint_button{
+  background-color: #00ffff;
+  height: 30px;
+  width: 70px;
+  margin: 2px;
+}
+
+.size_button{
+  background-color: #8B0000;
+  height: 30px;
+  width: 30px;
+  margin: 2px;
+}
+
+#img_button{
+  background-color:	#1E90FF;
+  height: 40px;
+  width: 70px;
+  margin: 2px;
+}
+
+.segment_button{
+  color: #ffffff;
+  background-color: #3CB371;
+  height: 30px;
+  width: 70px;
+  margin: 2px;
+}
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 10px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 15px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.Mask_Img{
+  border:1px solid #000000;
+  display: none;
+}
+
+#Colour_Div{
+  display: none;
+}
+
+#Pen_Div{
+  display: none;
+}
+
+#Shape_Div{
+  display: none;
+}
+
+#Segment_Div{
+  display: none;
+}
+
+#Inpaint_Div{
+  display: none;
+}
