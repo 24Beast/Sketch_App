@@ -5,8 +5,33 @@ var cursor_pts = [];
 var colour_select = 0;
 var mask_select = [];
 
-var img_address = "http://128.2.204.42:8000/"
+var img_address = "http://128.2.204.42:8000/server/"
 var req_address = "http://128.2.204.42:5050/"
+
+function uuid4() {
+  const ho = (n, p) => n.toString(16).padStart(p, 0); /// Return the hexadecimal text representation of number `n`, padded with zeroes to be of length `p`
+  const view = new DataView(new ArrayBuffer(16)); /// Create a view backed by a 16-byte buffer
+  crypto.getRandomValues(new Uint8Array(view.buffer)); /// Fill the buffer with random data
+  view.setUint8(6, (view.getUint8(6) & 0xf) | 0x40); /// Patch the 6th byte to reflect a version 4 UUID
+  view.setUint8(8, (view.getUint8(8) & 0x3f) | 0x80); /// Patch the 8th byte to reflect a variant 1 UUID (version 4 UUIDs are)
+  return `${ho(view.getUint32(0), 8)}-${ho(view.getUint16(4), 4)}-${ho(view.getUint16(6), 4)}-${ho(view.getUint16(8), 4)}-${ho(view.getUint32(10), 8)}${ho(view.getUint16(14), 4)}`; /// Compile the canonical textual form from the array data
+}
+
+function start(uuid){
+  var url = req_address;
+  const formData = new FormData()
+  formData.append('user_id', uuid);
+  fetch(url, {
+    method: 'POST',
+    body: formData
+  }).then((response) => {
+    console.log("Response : "+response);
+    console.log(uuid);
+  })
+}
+
+var uuid = uuid4();
+
 
 var slider_slic = document.getElementById("slic_range");
 var output_slic = document.getElementById("slic_val");
@@ -125,7 +150,7 @@ function selector(evt){
         console.log("Updated");
       }
       var img_2 = document.getElementById("col_"+colour_select)
-      img_2.src = img_src + "masks/col_"+colour_select+".png?" + new Date().getTime();
+      img_2.src = img_address + "masks/col_"+colour_select+".png?" + new Date().getTime();
       img_2.onload = function(){
         img_2.style.display = "block";
         console.log("Mask Updated.")

@@ -46,6 +46,8 @@ def slic_segment():
     back_img[:,:,2] = img[:,:,2] * 255
     orig = img
     back_img[:,:,3] = 255
+    for file in os.listdir("./masks/"):
+        os.remove("./masks/"+file)
     plt.imsave("masks/back.png",back_img.astype(np.uint8))
     plt.imsave("segment.jpg",segmented_img)
     np.save("segments",segments)
@@ -70,6 +72,8 @@ def felzen_segment():
     back_img[:,:,2] = img[:,:,2] * 255
     back_img[:,:,3] = 255
     orig = img
+    for file in os.listdir("./masks/"):
+        os.remove("./masks/"+file)
     plt.imsave("masks/back.png",back_img.astype(np.uint8))
     plt.imsave("segment.jpg",segmented_img)
     np.save("segments",segments)
@@ -132,14 +136,17 @@ def selector():
 @app.route("/flip",methods=["POST"])
 def flipper():
     img_b64 = request.values['data'].split("base64,")[1]
-    val = 600-int(float(request.values['val']))
+    axis = int(float(request.values['axis']))
     image_result = open('flipping.png', 'wb')
     image_result.write(base64.b64decode(img_b64))
     img = io.imread('flipping.png')
     img = color.rgba2rgb(img)
-    img = np.flip(img)
+    if axis<2:
+        img = np.flip(img,axis=axis)
+        response = jsonify({"Happy":"Noises"})
+    else:
+        response = jsonify({"Sad":"Noises"})
     plt.imsave("flip.png",img)
-    response = jsonify({"Happy":"Noises"})
     return response
 
 app.run(debug=True,port=5050)
